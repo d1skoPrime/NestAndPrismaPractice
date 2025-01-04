@@ -1,0 +1,13 @@
+model Post {
+  id          Int     @id @default(autoincrement())
+  title       String
+  content     String?
+  isPublished Boolean @default(false) @map("is_published")
+  author      User    @relation(fields: [authorId], references: [id])
+  authorId    Int     @map("author_id")
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("posts")
+}
